@@ -1,28 +1,31 @@
 import React from 'react';
-import styled from 'styled-components';
-const StyleHeader = styled.header`
-  display: flex;
-  background-color: blue;
-  justify-content: center;
-`;
-const Searchbar = () => {
+// import styled from 'styled-components';
+import { StyleHeader, StyleForm } from 'ImageFinder.styled';
+
+const SearchBar = ({ onChangeQuery }) => {
+  const onSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    onChangeQuery(form.search.value);
+  };
+
   return (
-    <header>
-      <form class="form">
-        <button type="submit" class="button">
-          <span class="button-label">Search</span>
+    <StyleHeader>
+      <StyleForm onSubmit={onSubmit}>
+        <button>
+          <span>Search</span>
         </button>
 
         <input
-          class="input"
+          name="search"
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </StyleForm>
+    </StyleHeader>
   );
 };
 
-export default Searchbar;
+export default SearchBar;
