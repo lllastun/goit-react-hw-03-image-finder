@@ -1,10 +1,13 @@
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import React from 'react';
 
-const ImageGallery = () => {
+const ImageGallery = ({ images }) => {
+  console.log(images);
   return (
-    <ul class="gallery">
-      <ImageGalleryItem />
+    <ul className="gallery">
+      {/* {images.map(image => (
+        <ImageGalleryItem />
+      ))} */}
     </ul>
   );
 };
