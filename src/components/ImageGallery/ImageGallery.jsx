@@ -5,9 +5,9 @@ const ImageGallery = ({ images }) => {
   console.log(images);
   return (
     <ul className="gallery">
-      {/* {images.map(image => (
+      {images.map(() => (
         <ImageGalleryItem />
-      ))} */}
+      ))}
     </ul>
   );
 };

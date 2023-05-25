@@ -66,11 +66,13 @@ export class ImageFinder extends Component {
     const { status, isOpen, pictureUrl, images } = this.state;
     const { pending, fulfilled, rejected } = STATUS;
     // console.log(images);
+    // console.log(this.state.images);
     return (
       <div>
         <SearchBar onChangeQuery={this.handleChangeQuery} />
         {status === pending && <Loader />}
         <ImageGallery />
+        {console.log(status)}
         {status === fulfilled && (
           <ImageGallery
             getCurrentImages={this.getCurrentImages}
