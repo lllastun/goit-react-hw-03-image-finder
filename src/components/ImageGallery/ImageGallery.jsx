@@ -3,7 +3,6 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import React from 'react';
 
 const ImageGallery = ({ images, getCurrentImages }) => {
-  // console.log(images);
   return (
     <StyledUl className="gallery">
       {images?.map(image => (

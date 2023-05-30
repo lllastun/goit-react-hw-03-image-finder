@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const LoadMoreButton = styled.button`
-  /* position: absolute;
-  top: 5px;
-  right: 5px; */
+  display: block;
+  margin: 20px auto;
   background-color: transparent;
-  /* border: none; */
   font-size: 20px;
   cursor: pointer;
 

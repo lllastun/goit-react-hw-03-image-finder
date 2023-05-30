@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { ModalWrapper, ModalContent } from './Modal.style';
 
-// const modalDiv = document.querySelector('#modal');
-
 class Modal extends Component {
   onBackdropClick = e => {
     if (e.target === e.currentTarget) {
       this.props.onClose();
     }
   };
+
+  handleKeyDown = e => {
+    if (e.key === 'Escape') {
+      this.props.onClose();
+    }
+  };
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     const { children } = this.props;
     return (

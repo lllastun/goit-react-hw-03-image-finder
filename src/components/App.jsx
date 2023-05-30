@@ -11,7 +11,7 @@ export const App = () => {
       }}
     >
       <ImageFinder />
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };
