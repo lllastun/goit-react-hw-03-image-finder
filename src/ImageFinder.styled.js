@@ -16,8 +16,6 @@ export const StyleHeader = styled.header`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  padding-right: 24px;
-  padding-left: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
@@ -32,6 +30,10 @@ export const StyleHeader = styled.header`
   button:hover {
     background-color: #fff1e5;
   }
+
+  img {
+    display: block;
+  }
 `;
 
 export const StyleForm = styled.form`
@@ -42,4 +44,25 @@ export const LoaderWrap = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+`;
+
+export const StyledUl = styled.ul`
+  display: flex;
+  justify-content: center;
+  max-width: 1800px;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+  padding-left: 0;
+`;
+export const StyledLi = styled.li`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 260px;
+  min-width: 200px;
+  max-height: 200px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 `;

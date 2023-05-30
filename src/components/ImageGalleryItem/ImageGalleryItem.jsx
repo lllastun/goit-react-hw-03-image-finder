@@ -1,10 +1,21 @@
+import { StyledLi } from 'ImageFinder.styled';
+import { Image } from 'components/Image/Image';
 import React from 'react';
 
-const ImageGalleryItem = () => {
+const ImageGalleryItem = ({ image, getCurrentImages }) => {
+  // const { previewURL, tags } = image;
   return (
-    <li class="gallery-item">
-      <img src="" alt="" />
-    </li>
+    <StyledLi
+      onClick={() => getCurrentImages(image.largeImageURL)}
+      className="gallery-item"
+    >
+      {/* {console.log(image.largeImageURL)} */}
+      <Image
+        image={image}
+        // onClick={() => getCurrentImages(image.largeImageURL)}
+        // onClick={console.log(image.largeImageURL)}
+      />
+    </StyledLi>
   );
 };
 

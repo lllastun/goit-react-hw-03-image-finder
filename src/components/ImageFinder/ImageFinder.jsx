@@ -5,6 +5,8 @@ import { getImages } from 'services/pixabayAPI';
 import Loader from 'components/Loader/Loader';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Modal from 'components/Modal/Modal';
+import Button from 'components/Button/Button';
+
 const STATUS = {
   idle: 'loading',
   pending: 'pending',
@@ -18,13 +20,13 @@ export class ImageFinder extends Component {
     status: 'idle',
     query: '',
     page: 1,
+    bigImage: '',
+    isOpen: false,
+    totalImg: 0,
   };
 
-  componentDidMount() {
-    this.fetchData();
-  }
-
   componentDidUpdate(prevProps, prevState) {
+    console.log(prevState.query);
     if (prevState.query !== this.state.query) {
       this.fetchData();
     }
@@ -33,57 +35,84 @@ export class ImageFinder extends Component {
     }
   }
 
-  handleChangeQuery = query => {
-    this.setState({ query });
+  toggleModal = () => {
+    this.setState(({ isOpen }) => {
+      return {
+        isOpen: !isOpen,
+      };
+    });
   };
 
   fetchData = () => {
     const { query, page } = this.state;
     const { pending, fulfilled, rejected } = STATUS;
     this.setState({ status: pending });
-    // console.log(query);
-    setTimeout(() => {
-      getImages(query, page)
-        .then(res => {
-          this.setState({ images: res.data.hits, status: fulfilled });
-          // console.log(`res.data.hits`);
-          // console.log(res.data.hits);
-          toast.success('Images is ready!');
-        })
-        .catch(e => {
-          toast.error('Smth went wrong!');
-          this.setState({ status: rejected });
+
+    getImages(query, page)
+      .then(res => {
+        this.setState({
+          images: res.data.hits,
+          totalImg: res.data.total,
+          status: fulfilled,
         });
-    }, 1500);
+        toast.success('Images is ready!');
+      })
+      .catch(e => {
+        toast.error('Smth went wrong!');
+        this.setState({ status: rejected });
+      });
   };
 
-  getCurrentImages = images => {
-    this.setState({ images });
-    // this.toggleModal();
+  getCurrentImages = image => {
+    console.log(image);
+    this.setState({ bigImage: image });
+    this.toggleModal();
+  };
+
+  handleChangeQuery = query => {
+    this.setState({ query });
+  };
+
+  handleClickMore = () => {
+    this.setState(({ page }) => {
+      return {
+        page: page + 1,
+      };
+    });
   };
 
   render() {
-    const { status, isOpen, pictureUrl, images } = this.state;
+    const { status, isOpen, bigImage, images, totalImg, page } = this.state;
     const { pending, fulfilled, rejected } = STATUS;
-    // console.log(images);
-    // console.log(this.state.images);
     return (
       <div>
-        <SearchBar onChangeQuery={this.handleChangeQuery} />
+        <SearchBar onSubmit={this.handleChangeQuery} />
         {status === pending && <Loader />}
-        <ImageGallery />
-        {console.log(status)}
         {status === fulfilled && (
-          <ImageGallery
-            getCurrentImages={this.getCurrentImages}
-            images={this.state.images}
-          />
+          <>
+            {console.log(images.length)}
+            <ImageGallery
+              getCurrentImages={this.getCurrentImages}
+              images={images}
+            />
+          </>
         )}
-        {/* {isOpen && (
+        {totalImg > page * 12 && (
+          <Button handleChangeQuery={this.handleClickMore}> </Button>
+        )}
+        {isOpen && (
           <Modal onClose={this.toggleModal}>
-            <img src={pictureUrl} alt="" />
+            <img
+              src={bigImage}
+              alt=""
+              style={{
+                maxHeight: '80vh',
+                maxWidth: '50vw',
+                objectFit: 'cover',
+              }}
+            />
           </Modal>
-        )} */}
+        )}
       </div>
     );
   }

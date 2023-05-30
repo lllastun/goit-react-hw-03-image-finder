@@ -2,16 +2,16 @@ import React from 'react';
 // import styled from 'styled-components';
 import { StyleHeader, StyleForm } from 'ImageFinder.styled';
 
-const SearchBar = ({ onChangeQuery }) => {
-  const onSubmit = e => {
+const SearchBar = ({ onSubmit }) => {
+  const newSearh = e => {
     e.preventDefault();
     const form = e.target;
-    onChangeQuery(form.search.value);
+    onSubmit(form.search.value);
   };
 
   return (
     <StyleHeader>
-      <StyleForm onSubmit={onSubmit}>
+      <StyleForm onSubmit={newSearh}>
         <button>
           <span>Search</span>
         </button>

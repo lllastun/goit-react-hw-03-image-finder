@@ -1,14 +1,19 @@
+import { StyledUl } from 'ImageFinder.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import React from 'react';
 
-const ImageGallery = ({ images }) => {
-  console.log(images);
+const ImageGallery = ({ images, getCurrentImages }) => {
+  // console.log(images);
   return (
-    <ul className="gallery">
-      {images.map(() => (
-        <ImageGalleryItem />
+    <StyledUl className="gallery">
+      {images?.map(image => (
+        <ImageGalleryItem
+          image={image}
+          key={image.id}
+          getCurrentImages={getCurrentImages}
+        />
       ))}
-    </ul>
+    </StyledUl>
   );
 };
 
