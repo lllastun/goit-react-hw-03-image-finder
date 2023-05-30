@@ -26,7 +26,7 @@ export class ImageFinder extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.query);
+    // console.log(prevState.query);
     if (prevState.query !== this.state.query) {
       this.fetchData();
     }
@@ -47,14 +47,16 @@ export class ImageFinder extends Component {
     const { query, page } = this.state;
     const { pending, fulfilled, rejected } = STATUS;
     this.setState({ status: pending });
+    // this.setState({ page: 1 });
+    console.log(this.state.page);
 
     getImages(query, page)
       .then(res => {
-        this.setState({
-          images: res.data.hits,
+        this.setState(prevState => ({
+          images: [...prevState.images, ...res.data.hits],
           totalImg: res.data.total,
           status: fulfilled,
-        });
+        }));
         toast.success('Images is ready!');
       })
       .catch(e => {
@@ -64,21 +66,19 @@ export class ImageFinder extends Component {
   };
 
   getCurrentImages = image => {
-    console.log(image);
+    // console.log(image);
     this.setState({ bigImage: image });
     this.toggleModal();
   };
 
   handleChangeQuery = query => {
     this.setState({ query });
+    this.setState({ page: 1 });
+    this.setState({ images: [] });
   };
 
   handleClickMore = () => {
-    this.setState(({ page }) => {
-      return {
-        page: page + 1,
-      };
-    });
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   render() {
@@ -90,7 +90,9 @@ export class ImageFinder extends Component {
         {status === pending && <Loader />}
         {status === fulfilled && (
           <>
-            {console.log(images.length)}
+            {/* {this.setState(prevState => ({
+              images: [...prevState.images, ...images],
+            }))} */}
             <ImageGallery
               getCurrentImages={this.getCurrentImages}
               images={images}
@@ -98,7 +100,7 @@ export class ImageFinder extends Component {
           </>
         )}
         {totalImg > page * 12 && (
-          <Button handleChangeQuery={this.handleClickMore}> </Button>
+          <Button handleClickMore={this.handleClickMore}> </Button>
         )}
         {isOpen && (
           <Modal onClose={this.toggleModal}>
