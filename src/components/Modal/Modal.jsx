@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ModalWrapper, ModalContent } from './Modal.style';
 
-const modalDiv = document.querySelector('#modal');
+// const modalDiv = document.querySelector('#modal');
 
 class Modal extends Component {
   onBackdropClick = e => {
@@ -10,7 +10,7 @@ class Modal extends Component {
     }
   };
   render() {
-    const { onClose, children } = this.props;
+    const { children } = this.props;
     return (
       <ModalWrapper onClick={this.onBackdropClick}>
         <ModalContent>

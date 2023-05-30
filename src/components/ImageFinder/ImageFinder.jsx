@@ -83,7 +83,7 @@ export class ImageFinder extends Component {
 
   render() {
     const { status, isOpen, bigImage, images, totalImg, page } = this.state;
-    const { pending, fulfilled, rejected } = STATUS;
+    const { pending, fulfilled } = STATUS;
     return (
       <div>
         <SearchBar onSubmit={this.handleChangeQuery} />

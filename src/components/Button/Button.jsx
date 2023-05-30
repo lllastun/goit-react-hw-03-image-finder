@@ -1,5 +1,5 @@
 import React from 'react';
-import { flex } from 'styled-system';
+// import { flex } from 'styled-system';
 import { LoadMoreButton } from './Button.style';
 
 const Button = ({ handleClickMore }) => {
