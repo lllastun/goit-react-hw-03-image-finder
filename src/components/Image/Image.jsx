@@ -1,9 +1,8 @@
 import React from 'react';
 import css from './Image.module.css';
+import PropTypes from 'prop-types';
 
-export const Image = ({ image: { previewURL, tags, largeImageURL } }) => {
-  // const {  } = image;
-
+export const Image = ({ image: { tags, largeImageURL } }) => {
   return (
     <img
       className={css.image}
@@ -13,4 +12,11 @@ export const Image = ({ image: { previewURL, tags, largeImageURL } }) => {
       width="260px"
     />
   );
+};
+
+Image.propTypes = {
+  image: PropTypes.shape({
+    tags: PropTypes.string,
+    largeImageURL: PropTypes.string.isRequired,
+  }).isRequired,
 };

@@ -1,6 +1,7 @@
 import { StyledUl } from 'ImageFinder.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ImageGallery = ({ images, getCurrentImages }) => {
   return (
@@ -17,3 +18,8 @@ const ImageGallery = ({ images, getCurrentImages }) => {
 };
 
 export default ImageGallery;
+
+ImageGallery.propTypes = {
+  images: PropTypes.array.isRequired,
+  getCurrentImages: PropTypes.func.isRequired,
+};

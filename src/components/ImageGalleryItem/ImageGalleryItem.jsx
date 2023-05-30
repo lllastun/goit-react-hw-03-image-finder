@@ -1,6 +1,7 @@
 import { StyledLi } from 'ImageFinder.styled';
 import { Image } from 'components/Image/Image';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ image, getCurrentImages }) => {
   return (
@@ -14,3 +15,8 @@ const ImageGalleryItem = ({ image, getCurrentImages }) => {
 };
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+  image: PropTypes.object.isRequired,
+  getCurrentImages: PropTypes.func.isRequired,
+};

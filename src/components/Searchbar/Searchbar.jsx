@@ -1,6 +1,6 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { StyleHeader, StyleForm } from 'ImageFinder.styled';
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ onSubmit }) => {
   const newSearh = e => {
@@ -29,3 +29,7 @@ const SearchBar = ({ onSubmit }) => {
 };
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
