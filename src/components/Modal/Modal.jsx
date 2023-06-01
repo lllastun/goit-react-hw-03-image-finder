@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ModalWrapper, ModalContent } from './Modal.style';
+import PropTypes from 'prop-types';
 
 class Modal extends Component {
   onBackdropClick = e => {
@@ -35,3 +36,6 @@ class Modal extends Component {
 }
 
 export default Modal;
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
