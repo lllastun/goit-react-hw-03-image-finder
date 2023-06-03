@@ -38,4 +38,5 @@ class Modal extends Component {
 export default Modal;
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
 };
